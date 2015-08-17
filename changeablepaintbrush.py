@@ -1,6 +1,10 @@
 import cv2 
+import cv
+import time 
 import numpy as np
 
+time1 = time.strftime("%H:%M:%S") 
+print time1 
 drawing = False 
 ix,iy = -1, -1
 paintBrush = 1
@@ -39,9 +43,11 @@ cv2.createTrackbar('Blue', name, 0, 255, nothing)
 while(1): 
     cv2.imshow(name, img) 
     k = cv2.waitKey(1) & 0xFF 
-    if k == ord('m'): 
-        mode = not mode 
-    elif k == 27: 
+    if k == 27: 
         break 
+    elif k == ord('s'): 
+        saveName = 'paint' + time1 + '.jpg'
+        cv2.imwrite(saveName, img)
+        break
 cv2.destroyAllWindows()
 
